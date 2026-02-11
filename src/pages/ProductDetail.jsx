@@ -67,8 +67,8 @@ function ProductDetail() {
 
   // Productos sugeridos
   const relatedProducts = useMemo(() => {
-    const otherProducts = items.filter((item) => item.id !== producto.id);
-    const shuffled = [...otherProducts].sort(() => Math.random() - 0.5);
+    const otherProducts = items.filter((item) => item.id !== producto.id); // Para filtrar los items y que no nos devuelva el mismo que miramos
+    const shuffled = [...otherProducts].sort(() => Math.random() - 0.5); // para que lo que nos devuelve sea aleatorio cada vez que entramos a la página de detalle
 
     return shuffled.slice(0, 3);
   }, [producto.id]);

@@ -1,11 +1,8 @@
-import { useState } from "react";
 import styles from "./CardActions.module.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function CardActions({ name, id }) {  
-  const [isFav, setIsFav] = useState(false);
-  
-  // Controlador del número de personas
+function CardActions({ name, id, isFav = false, toggleFav }) {
   const [people, setPeople] = useState(1);
 
   return (
@@ -13,7 +10,7 @@ function CardActions({ name, id }) {
       {/* Botón de favorito */}
       <button
         className={`${styles['btn-fav']} ${isFav ? styles.active : ""}`}
-        onClick={() => setIsFav(!isFav)}
+        onClick={() => toggleFav && toggleFav(id)}
         aria-label="Añadir a favoritos"
       >
         {isFav ? "❤️" : "🤍"}
