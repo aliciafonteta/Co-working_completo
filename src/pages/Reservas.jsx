@@ -74,6 +74,7 @@ function Reservas() {
                   <th>Espacio</th>
                   <th>Fecha</th>
                   <th>Horas</th>
+                  <th>Personas</th>
                   <th>Total</th>
                   <th>Estado</th>
                   <th>Acciones</th>
@@ -85,6 +86,7 @@ function Reservas() {
                     <td className="espacio-nombre">{reserva.espacioNombre}</td>
                     <td>{reserva.fecha}</td>
                     <td>{reserva.horas}h</td>
+                    <td>{reserva.personas || 1}</td>
                     <td className="precio">{reserva.precioTotal}€</td>
                     <td>
                       <span className={`estado-badge ${reserva.estado.toLowerCase()}`}>

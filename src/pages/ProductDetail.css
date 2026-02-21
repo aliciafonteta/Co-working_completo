@@ -207,6 +207,18 @@
   font-size: 1rem;
 }
 
+/* Eliminar flechas del input type="number" en Chrome, Safari, Edge */
+.hours-input::-webkit-outer-spin-button,
+.hours-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Eliminar flechas en Firefox */
+.hours-input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .total-price {
   display: flex;
   justify-content: space-between;

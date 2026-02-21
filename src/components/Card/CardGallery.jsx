@@ -40,17 +40,6 @@ function CardGallery({ images, name, viewMode }) {
           >
             ❯
           </button>
-
-          <div className={styles['gallery-indicators']}> {/* puntos de selección */}
-            {images.map((_, index) => (
-              <button
-                key={index}
-                className={`${styles.indicator} ${index === currentImageIndex ? styles.active : ""}`}
-                onClick={() => setCurrentImageIndex(index)}
-                aria-label={`Ir a la foto ${index + 1}`}
-              />
-            ))}
-          </div>
         </>
       )}
     </div>

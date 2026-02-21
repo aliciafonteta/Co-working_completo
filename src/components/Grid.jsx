@@ -15,6 +15,7 @@ function Grid() {
   });
   const [showFavOnly, setShowFavOnly] = useState(false);
   const [sortOrder, setSortOrder] = useState("none"); // 'none' | 'asc' | 'desc'
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   useEffect(() => {
     try {
@@ -58,32 +59,51 @@ function Grid() {
           ☰ Lista
         </button>
 
-        <button
-          className={`${styles['view-btn']} ${showFavOnly ? styles.active : ""}`}
-          onClick={() => setShowFavOnly((s) => !s)}
-          aria-label="Mostrar solo favoritos"
-          title="Mostrar solo favoritos"
-        >
-          Favoritos
-        </button>
-
-        <div className={styles['sort-controls']}>
+        <div className={styles['filter-menu-container']}>
           <button
-            className={`${styles['view-btn']} ${sortOrder === "asc" ? styles.active : ""}`}
-            onClick={() => setSortOrder("asc")}
-            aria-label="Ordenar por precio ascendente"
-            title="Precio: menor a mayor"
+            className={`${styles['view-btn']} ${showFilterMenu ? styles.active : ""}`}
+            onClick={() => setShowFilterMenu((prev) => !prev)}
+            aria-label="Abrir menú de filtros"
+            title="Filtros"
           >
-            Precio ↑
+            ⚙ Filtros
           </button>
-          <button
-            className={`${styles['view-btn']} ${sortOrder === "desc" ? styles.active : ""}`}
-            onClick={() => setSortOrder("desc")}
-            aria-label="Ordenar por precio descendente"
-            title="Precio: mayor a menor"
-          >
-            Precio ↓
-          </button>
+          
+          {showFilterMenu && (
+            <div className={styles['filter-menu']}>
+              <button
+                className={`${styles['filter-option']} ${showFavOnly ? styles.active : ""}`}
+                onClick={() => setShowFavOnly((s) => !s)}
+                aria-label="Mostrar solo favoritos"
+              >
+                ♥ Favoritos
+              </button>
+              
+              <div className={styles['sort-divider']}></div>
+              
+              <button
+                className={`${styles['filter-option']} ${sortOrder === "asc" ? styles.active : ""}`}
+                onClick={() => setSortOrder("asc")}
+                aria-label="Ordenar por precio ascendente"
+              >
+                Precio ↑ (Menor a Mayor)
+              </button>
+              <button
+                className={`${styles['filter-option']} ${sortOrder === "desc" ? styles.active : ""}`}
+                onClick={() => setSortOrder("desc")}
+                aria-label="Ordenar por precio descendente"
+              >
+                Precio ↓ (Mayor a Menor)
+              </button>
+              <button
+                className={`${styles['filter-option']} ${sortOrder === "none" ? styles.active : ""}`}
+                onClick={() => setSortOrder("none")}
+                aria-label="Sin ordenamiento"
+              >
+                Sin ordenar
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

@@ -12,6 +12,7 @@ function ProductDetail() {
   const producto = items.find((item) => item.id === parseInt(id));
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [horas, setHoras] = useState(1);
+  const [personas, setPersonas] = useState(1);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,6 +47,7 @@ function ProductDetail() {
       id: Date.now(),
       espacioNombre: producto.nombre,
       horas: horas,
+      personas: personas,
       precioTotal: producto.precio * horas,
       fecha: new Date().toISOString().split('T')[0],
       estado: "Confirmada"
@@ -152,6 +154,32 @@ function ProductDetail() {
               </div>
             </div>
 
+            <div className="hours-selector">
+              <label htmlFor="personas">Número de personas:</label>
+              <div className="hours-control">
+                <button 
+                  onClick={() => setPersonas(Math.max(1, personas - 1))}
+                  className="hours-btn"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="personas"
+                  value={personas}
+                  onChange={(e) => setPersonas(Math.max(1, parseInt(e.target.value) || 1))}
+                  min="1"
+                  className="hours-input"
+                />
+                <button 
+                  onClick={() => setPersonas(personas + 1)}
+                  className="hours-btn"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
             <div className="total-price">
               <span>Total:</span>
               <span className="total-amount">{producto.precio * horas}€</span>
@@ -188,6 +216,10 @@ function ProductDetail() {
             <div className="detail-row">
               <span className="detail-label">Horas:</span>
               <span className="detail-value">{horas} hora(s)</span>
+            </div>
+            <div className="detail-row">
+              <span className="detail-label">Personas:</span>
+              <span className="detail-value">{personas} persona(s)</span>
             </div>
             <div className="detail-row total">
               <span className="detail-label">Total:</span>
